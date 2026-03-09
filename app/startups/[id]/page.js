@@ -27,6 +27,9 @@ export default async function StartupDetailPage({ params }) {
 
       <div style={styles.container}>
         <Link href="/startups" style={styles.back}>← Back to Explorer</Link>
+        <Link href={`/startups/${startup.id}/analysis`} style={{ ...styles.websiteBtn, borderColor: 'var(--green)', color: 'var(--green)' }}>
+  View AI Analysis →
+</Link>
 
         <div style={styles.header} className="fade-up">
           <div style={styles.tags}>
