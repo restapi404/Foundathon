@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 export async function POST(request) {
   const startup = await request.json()
 
-  const prompt = `You are an expert climate tech investment analyst. Analyze this climate startup.
+  const prompt = `You are an expert climate tech investment analyst. Analyze this climate startup and return ONLY numbers and very short labels — no long sentences except where specified.
 
 Startup:
 - Name: ${startup.name}
@@ -17,14 +17,32 @@ Startup:
 
 Respond ONLY with a valid JSON object (no markdown, no backticks):
 {
-  "score": <integer 1-100>,
-  "scoreLabel": "<Speculative|Emerging|Promising|Strong|Exceptional>",
-  "thesis": "<2-3 sentence investment thesis>",
-  "opportunity": "<2-3 sentence market opportunity and sector tailwinds>",
-  "risks": ["<risk 1>", "<risk 2>", "<risk 3>"],
-  "investorFit": "<1-2 sentence ideal investor profile>",
-  "comparable": "<1-2 real comparable companies or deals in this space>",
-  "verdict": "<one bold sentence — the single most important thing to know about this startup>"
+  "verdict": "<one punchy sentence, max 15 words>",
+  "thesis": "<one sentence max>",
+  "scores": {
+    "team": <1-10>,
+    "market": <1-10>,
+    "technology": <1-10>,
+    "impact": <1-10>,
+    "timing": <1-10>
+  },
+  "risks": [
+    { "label": "<3-5 word risk label>", "severity": <1-10> },
+    { "label": "<3-5 word risk label>", "severity": <1-10> },
+    { "label": "<3-5 word risk label>", "severity": <1-10> },
+    { "label": "<3-5 word risk label>", "severity": <1-10> }
+  ],
+  "fundingBreakdown": [
+    { "label": "R&D", "pct": <integer> },
+    { "label": "GTM", "pct": <integer> },
+    { "label": "Ops", "pct": <integer> },
+    { "label": "Hiring", "pct": <integer> }
+  ],
+  "marketReadiness": <integer 1-100>,
+  "climateImpactScore": <integer 1-100>,
+  "timeToRevenueMonths": <integer>,
+  "comparable": "<2-4 words, company name only>",
+  "investorFit": "<one sentence max>"
 }`
 
   const res = await fetch(
@@ -36,10 +54,8 @@ Respond ONLY with a valid JSON object (no markdown, no backticks):
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 2000,
-          thinkingConfig: {
-            thinkingBudget: 0,
-          },
+          maxOutputTokens: 1000,
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     }
