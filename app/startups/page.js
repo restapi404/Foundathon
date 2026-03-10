@@ -60,7 +60,7 @@ const styles = {
     margin: '0 auto',
   },
   tag: {
-    fontSize: '10px',
+    fontSize: '13px',
     letterSpacing: '3px',
     textTransform: 'uppercase',
     color: 'var(--green)',
@@ -69,7 +69,7 @@ const styles = {
   title: {
     fontFamily: 'Syne, sans-serif',
     fontWeight: 800,
-    fontSize: 'clamp(32px, 4vw, 52px)',
+    fontSize: 'clamp(40px, 5vw, 64px)',
     letterSpacing: '-2px',
     lineHeight: 1.05,
     marginBottom: '16px',
@@ -81,7 +81,7 @@ const styles = {
     color: 'var(--green)',
   },
   sub: {
-    fontSize: '13px',
+    fontSize: '16px',
     color: 'var(--gray)',
     fontWeight: 300,
   },

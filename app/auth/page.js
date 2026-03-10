@@ -84,7 +84,7 @@ function AuthForm() {
                   type="text"
                   value={fullName}
                   onChange={e => setFullName(e.target.value)}
-                  placeholder="Ada Lovelace"
+                  placeholder="<your name>"
                   required
                   style={styles.input}
                 />
@@ -94,10 +94,10 @@ function AuthForm() {
                 <label style={styles.label}>I am a</label>
                 <div style={styles.roleGrid}>
                   {[
-                    { value: 'founder', label: '🌱 Founder' },
-                    { value: 'investor', label: '💰 Investor' },
-                    { value: 'researcher', label: '🧑‍🔬 Researcher' },
-                    { value: 'talent', label: '🧑‍💻 Talent' },
+                    { value: 'founder', label: 'Founder' },
+                    { value: 'investor', label: 'Investor' },
+                    { value: 'researcher', label: 'Researcher' },
+                    { value: 'talent', label: 'Talent' },
                   ].map(r => (
                     <button
                       key={r.value}
@@ -122,7 +122,7 @@ function AuthForm() {
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="<you@example.com>"
               required
               style={styles.input}
             />
